@@ -1,0 +1,326 @@
+/* ==========================================================================
+   Variables y Configuración Global
+   ========================================================================== */
+:root {
+    --primary: #FF7043;
+    --primary-hover: #F4511E;
+    --primary-light: #FBE9E7;
+    --accent: #26A69A;
+    --accent-hover: #00897B;
+    --text-main: #37474F;
+    --text-muted: #78909C;
+    --bg-body: #F4F6F8;
+    --bg-card: #FFFFFF;
+    --border-color: #CFD8DC;
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.04);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+    --transition: all 0.25s ease-in-out;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background-color: var(--bg-body);
+    color: var(--text-main);
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* ==========================================================================
+   Encabezado (Header)
+   ========================================================================== */
+.encabezado {
+    background: linear-gradient(135deg, #FF7043 0%, #FF9800 100%);
+    color: #FFFFFF;
+    text-align: center;
+    padding: 2.5rem 1rem;
+    box-shadow: var(--shadow-md);
+}
+
+.encabezado h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+    letter-spacing: -0.5px;
+}
+
+.encabezado p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    font-weight: 300;
+}
+
+/* ==========================================================================
+   Contenido Principal (Main)
+   ========================================================================== */
+.principal {
+    max-width: 1200px;
+    width: 100%;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    flex: 1;
+}
+
+@media (min-width: 900px) {
+    .principal {
+        grid-template-columns: 2fr 1fr;
+        align-items: start;
+    }
+    
+    .seccion.ancha {
+        grid-column: span 2;
+    }
+}
+
+/* ==========================================================================
+   Secciones y Tarjetas Contenedoras
+   ========================================================================== */
+.seccion {
+    background-color: var(--bg-card);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    transition: var(--transition);
+}
+
+.seccion:hover {
+    box-shadow: var(--shadow-md);
+}
+
+.seccion h2 {
+    font-size: 1.5rem;
+    color: var(--text-main);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-bottom: 2px solid var(--primary-light);
+    padding-bottom: 0.5rem;
+}
+
+/* ==========================================================================
+   Filtro de Categorías
+   ========================================================================== */
+.filtro-categorias {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.filtro-categorias button,
+.btn-categoria {
+    background-color: var(--bg-body);
+    color: var(--text-main);
+    border: 1px solid var(--border-color);
+    padding: 0.5rem 1.2rem;
+    border-radius: 50px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.filtro-categorias button:hover,
+.btn-categoria:hover {
+    background-color: var(--primary-light);
+    border-color: var(--primary);
+    color: var(--primary-hover);
+}
+
+.filtro-categorias button.activo,
+.btn-categoria.activo {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    color: #FFFFFF;
+    box-shadow: var(--shadow-sm);
+}
+
+/* ==========================================================================
+   Grilla y Tarjetas de Productos (Generado por JS)
+   ========================================================================== */
+.grilla-productos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.5rem;
+}
+
+/* Estilo estándar para las tarjetas de producto inyectadas dinámicamente */
+.producto-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.producto-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--primary-light);
+}
+
+.producto-card h3 {
+    font-size: 1.15rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-main);
+}
+
+.producto-card .categoria-tag {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--accent);
+    background: rgba(38, 166, 154, 0.1);
+    padding: 0.2rem 0.6rem;
+    border-radius: var(--radius-sm);
+    align-self: flex-start;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+}
+
+.producto-card .precio {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+}
+
+.producto-card .stock {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+}
+
+/* ==========================================================================
+   Formulario de Alta de Productos
+   ========================================================================== */
+#formProducto {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+#formProducto label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-main);
+    margin-bottom: -0.5rem;
+}
+
+#formProducto input,
+#formProducto select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    font-size: 1rem;
+    background-color: #FFFFFF;
+    color: var(--text-main);
+    transition: var(--transition);
+}
+
+#formProducto input:focus,
+#formProducto select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(255, 112, 67, 0.15);
+}
+
+/* ==========================================================================
+   Botones
+   ========================================================================== */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius-sm);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: var(--transition);
+    text-decoration: none;
+}
+
+.btn-principal {
+    background-color: var(--primary);
+    color: #FFFFFF;
+    box-shadow: var(--shadow-sm);
+    margin-top: 0.5rem;
+}
+
+.btn-principal:hover {
+    background-color: var(--primary-hover);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-1px);
+}
+
+.btn-secundario {
+    background-color: var(--accent);
+    color: #FFFFFF;
+}
+
+.btn-secundario:hover {
+    background-color: var(--accent-hover);
+}
+
+/* ==========================================================================
+   Mensajes de Estado / Alertas
+   ========================================================================== */
+.mensaje {
+    margin-top: 1rem;
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.9rem;
+    font-weight: 500;
+    display: none;
+}
+
+.mensaje.exito {
+    display: block;
+    background-color: #E8F5E9;
+    color: #2E7D32;
+    border: 1px solid #C8E6C9;
+}
+
+.mensaje.error {
+    display: block;
+    background-color: #FFEBEE;
+    color: #C62828;
+    border: 1px solid #FFCDD2;
+}
+
+/* ==========================================================================
+   Pie de Página (Footer)
+   ========================================================================== */
+.pie {
+    background-color: var(--text-main);
+    color: #CFD8DC;
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 0.9rem;
+    margin-top: auto;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
